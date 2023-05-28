@@ -1,0 +1,9 @@
+12 __label__biodiversidad
+25 __label_co2
+26 __label__cambioClimático
+27 __label__renovables
+29 __label__incendios
+31 __label__emisiones
+33 __label__renovables
+40 __label__olaCalor
+48 __label__calentamiento

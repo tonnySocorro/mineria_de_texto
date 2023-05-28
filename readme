@@ -1,0 +1,57 @@
+#MINERÍA DE TEXTO - MIW_2023_UO296392: TONNY SOCORRO DEL POZO
+
+##INSTALACIÓN:
+
+  1- Instalar la herramienta VScode, y el interprete de python.
+  2- Instalar librerías:
+            'pip install spacy'
+            'pip install textacy'
+            'pip install simhash'
+            'pip install fasttext'
+            'python -m spacy download es_core_news_sm'
+
+##DESCARGA DE MATERIALES:
+
+            'gdown 1NkuKEH32VKbDYhOrUIOJ76H4TXgtQCgx'
+            '!7z x noticias-cambio-climático-españa-abril-2022-abril-2023-finales-sentencias-disagree-NOT-disagree.ndjson.7z'
+
+##USO:
+
+  1- En este repositorio ya tenemos descargado el archivo noticias_negacionistas.txt , del que partiremos para el analisis posterior.
+                        
+  2- Desde la terminal ejecutar el  primer script 1_2_3_preparando_datos.py , en este  se realiza la lectura de los datos y se procesan cada noticia  no negacionista en tres etapas:
+                        * elimiando las noticias cuasi-duplicadas 
+                        * segmetando las noticias con Spacy
+                        * se aplica textiling
+  Luego usando el algoritmo k-means se realizan 50 cluster donde se imprmime pr consola unas keywords y unos segmentos, dicho contenido darán pistas sobre la temática de cada cluster.
+  Los 50 cluster creados se guardan en un pickle llamado resultado_clustering.pkl , debido al caracter aleatorio del algoritmo de clusterización hay que tener en cuenta que cada vez que se ejecute, los cluster generados seran diferentes, por tanto los guardamos para poder procesasor sobre los cluster ya generados.
+
+  3- Sobre los datos obtenidos por consola debemos elegir los cluster que resulten relevantes y asignarle una etiqueta a cada uno de ellos.
+
+  4- Luego ejecutamos el script 5_etiquetando_clusters.py , este script se encarga de leer los clusteres generados y sobre ellos obtener los cluster elegidos anteriormente y a cada segmente de cada noticia, se le  asigna la etiqueta correspediente, definida en al punto anterior.
+  Como resultado de este script se obtiene un archivo clusters_etiquetados.txt donde se tiene solamente las noticias de los cluster seleccionados, y para cada segmentos de la noticia la etiqteada definida, con el formato __label__etiquetaDefinida.
+  En el script 5.1_dividiendo_conjuntos.py se divide todos los segmentos seleccionados y etiquetados, de manera aleatoria en dos subconjuntos para el clasificador, uno para entrenamiento(80%) y uno de prueba(20%).
+ 
+  5- Con la ejecución del script 8_a_b_c_preparando_noticias_negacionaistas.py se procesan las noticias negacionistas , y se aplican los mismos algoritmos del paso 2 (segmentación con Scpacy y textiling). Estas noticias son guardadas en una archivo noticias_negacionistas.txt para posteriormente ser  etiquetadas por el clasificador.
+
+  6- Con la ejecución del script 6_clasificador.py , se utiliza un clasificador (fasttext), primero se entrena con los datos de entrenamiento preparados y luego se evalua con los datos de prueba.
+  Tambien en este script se etiquetan los datos preparados en el paso 5, estos son almacenados en un archivo noticias_negacionistas_clasificadas.txt.
+
+###RESUMEN
+
+  Al completar el procesamiento del clasificador con e scrypt 6, se obtuvieron los siguientes resultados:
+                      * Durante la ejecución, se procesaron 47,824 palabras.
+                      * Número de ejemplos: 767
+                      * Precisión: 0.9269882659713168
+
+  Estos resultados indican que el clasificador logró una precisión de aproximadamente 92.7%, lo cual es bastante alto y sugiere que el modelo utilizado es efectivo para clasificar los datos analizados.
+
+  
+
+
+
+
+  
+
+
+
