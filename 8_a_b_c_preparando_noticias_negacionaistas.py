@@ -37,7 +37,7 @@ stopwords_spanish = set(stopwords.words('spanish'))
 tt = TextTilingTokenizer(stopwords=stopwords_spanish)
 
 textos_segmentados = []
-lista_segmentos = []
+
 
 with open("noticias_negacionistas.txt", "w") as file:
     for noticia in noticias_negacionistas:
@@ -46,6 +46,7 @@ with open("noticias_negacionistas.txt", "w") as file:
         barra.update(1)
 
     for doc in textos_segmentados:
+        lista_segmentos = []
         try:
             lista_segmentos += tt.tokenize(doc)
             segmentos.append(lista_segmentos)

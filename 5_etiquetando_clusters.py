@@ -3,7 +3,7 @@ import pickle
 # Diccionario de clusters seleccionados y sus etiquetas
 clusters_etiquetas = {
     12: "__label__biodiversidad",
-    25: "__label_co2",
+    25: "__label__co2",
     26: "__label__cambioClimático",
     27: "__label__renovables",
     29: "__label__incendios",

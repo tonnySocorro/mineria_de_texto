@@ -24,7 +24,7 @@
                         * segmetando las noticias con Spacy
                         * se aplica textiling
   Luego usando el algoritmo k-means se realizan 50 cluster donde se imprmime pr consola unas keywords y unos segmentos, dicho contenido darán pistas sobre la temática de cada cluster.
-  Los 50 cluster creados se guardan en un pickle llamado resultado_clustering.pkl , debido al caracter aleatorio del algoritmo de clusterización hay que tener en cuenta que cada vez que se ejecute, los cluster generados seran diferentes, por tanto los guardamos para poder procesasor sobre los cluster ya generados.
+  Los 50 cluster creados se guardan en un pickle llamado resultado_clustering.pkl , debido al caracter aleatorio del algoritmo de clusterización hay que tener en cuenta que cada vez que se ejecute, los cluster generados serán diferentes, por tanto los guardamos para poder procesasor sobre los cluster ya generados.
 
   3- Sobre los datos obtenidos por consola debemos elegir los cluster que resulten relevantes y asignarle una etiqueta a cada uno de ellos.
 
@@ -37,18 +37,40 @@
   6- Con la ejecución del script 6_clasificador.py , se utiliza un clasificador (fasttext), primero se entrena con los datos de entrenamiento preparados y luego se evalua con los datos de prueba.
   Tambien en este script se etiquetan los datos preparados en el paso 5, estos son almacenados en un archivo noticias_negacionistas_clasificadas.txt.
 
-###RESUMEN
+###RESUMEN (8fg)
 
   Al completar el procesamiento del clasificador con e scrypt 6, se obtuvieron los siguientes resultados:
                       * Durante la ejecución, se procesaron 47,824 palabras.
-                      * Número de ejemplos: 767
-                      * Precisión: 0.9269882659713168
+                      * Se usaron 8 etiquetas
+                      * Número de ejemplos: 849
+                      * Precisión:0.9057714958775029
 
-  Estos resultados indican que el clasificador logró una precisión de aproximadamente 92.7%, lo cual es bastante alto y sugiere que el modelo utilizado es efectivo para clasificar los datos analizados.
+  Estos resultados indican que el clasificador logró una precisión de aproximadamente 90.7%, lo cual es bastante alto y sugiere que el modelo utilizado es efectivo para clasificar los datos analizados.
 
-  
+  Para hacer un análisis mas detallado se han tomado 10 noticias y se han etiquetado manualmente, y comparado con el etiquetado generado anteriormente:
+        * la noticia 1 donde el porciento mas alto de apariciones con diferencia es la etiqueta __label__renovables  es cierto que realizando un etiquetado manual, podemos concordar con la clasificación otorgada por la implelentación desarrollada.
+   
+        * En otros casos como la noticia 22 donde el etiquetado fue __label__biodiversidad realizando un analisis manual no se concuerda con la etiqutesa asingada ni con nignuna de las exsistentes, se considera uno de los casos donde sería necesario tener una etiqueta __label__offtopic. 
 
+        * En noticias como la 7, el etiquetado manual sería co2, a diferencia del etiquetado automatico.
 
+        * En la noticia 8 ,se concuerda con el etiquetada automatico, tambien es cierto que se aborda mucho la temática de la deforestación, aunque se considera que el eje central de la idea es la biodiversidad.
+
+        * En la noticia 9 se concuerda con el etiquetado automatico de olas de calor.
+
+        * En casos como la noticia 13 si bien podemos detallar que la temática que abarca en meramente económica, esta enfocada en el sostenimiento de la biodiversidad, por tanto se puede asumir que el etiquetado de biodiversidad puede encajar con la clasificación de esta noticia.
+
+        * En caso como la noticia 17 ,se concuerda con el etiqueta de cambio climático, ya que aunque se habla del crecimiento de la población mundial se aborda el tema de su relación causal con el cambio climático.
+
+        * En la noticia 21 se concuerda con el etiquetado renovables.
+ 
+        * El etiquetado de la noticia 26, seria renovables  a diferencia del automático que resulto cambio climático.
+
+        * La noticia 27 etiquetando manualmente, se estima que debería llevar la etiqueta de cambio climático, aunque deberíamos haber contemplado una etiqueta llamada deshielo, aun así el etiquetado manual ha resultado biodiversidad e incendios, aquí se observa la importancia de la calidad del etiquetado.
+ 
+        * la noticia 29 ha sido etiquetada manualmente como renovables al igual que la claisifcación.
+
+        * La noticia 31 claramene habla de cambio climático pero sin embargo el etiquetado automático ha resultado en biodiversidad e incendios.
 
 
   
